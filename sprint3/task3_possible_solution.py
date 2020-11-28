@@ -11,18 +11,12 @@ def validate_pwd(pwd: str):
 
 
 def are_secrets_valid(base_secrets, secrets_to_check):
+    base_secrets, secrets_to_check = set(base_secrets), set(secrets_to_check)
     if len(base_secrets) != len(secrets_to_check):
         return False
-    for word in secrets_to_check:
-        for letter in word:
-            for secret in base_secrets:
-                matched_len = 0
-                for s_letter in secret:
-                    if s_letter == letter:
-                        matched_len += 1
-                if matched_len < len(secret) - 1:
-                    return False
-    return True
+    matched_secrets = [word for word in secrets_to_check if word in base_secrets]
+    res = len(matched_secrets) >= len(base_secrets) - 1
+    return res
 
 
 def create_account(user_name: str, password: str, secret_words: list):
