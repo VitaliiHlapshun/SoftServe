@@ -14,14 +14,19 @@ def are_secrets_valid(base_secrets, secrets_to_check):
     if len(base_secrets) != len(secrets_to_check):
         return False
     for word in secrets_to_check:
-        for letter in word:
-            for secret in base_secrets:
+        is_valid = False
+        for secret in base_secrets:
+            if len(word) == len(secret):
                 matched_len = 0
-                for s_letter in secret:
-                    if s_letter == letter:
+                for letter in word:
+                    if letter in secret:
                         matched_len += 1
-                if matched_len < len(secret) - 1:
-                    return False
+                # matched_data.append(matched_len)
+                if matched_len >= len(secret) - 1:
+                    is_valid = True
+                    break
+        if not is_valid:
+            return False
     return True
 
 
@@ -32,3 +37,7 @@ def create_account(user_name: str, password: str, secret_words: list):
         return True
     validate_pwd(password)
     return check
+
+
+val1 = create_account('test', 'Qa!1asddsf', ['123', '133', '33312'])
+print(val1('Qa!1asddsf', ['123', '933', '33012']))
