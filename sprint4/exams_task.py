@@ -1,7 +1,7 @@
 class Testpaper:
 
-    def __init__(self, name, correct_answers_array, pass_mark_grade):
-        self.name = name
+    def __init__(self, subject, correct_answers_array, pass_mark_grade):
+        self.subject = subject
         self.correct_answers_array = correct_answers_array
         self.pass_mark_grade = pass_mark_grade
 
@@ -20,9 +20,9 @@ class Student:
         if isinstance(self.tests_taken, str):
             self.tests_taken = dict()
         if test_mark >= min_pass_mark:
-            self.tests_taken[test_obj.name] = f'Passed! ({round(test_mark)}%)'
+            self.tests_taken[test_obj.subject] = f'Passed! ({round(test_mark)}%)'
         else:
-            self.tests_taken[test_obj.name] = f'Failed! ({round(test_mark)}%)'
+            self.tests_taken[test_obj.subject] = f'Failed! ({round(test_mark)}%)'
 
     @staticmethod
     def get_test_mark(correct_answers: list, answers_given: list) -> float:
