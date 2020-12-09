@@ -13,13 +13,13 @@ def parse_user(output_file, *input_files) -> None:
             with open(file_name) as f:
                 data = json.load(f)
                 for dct in data:
-                    if dct['name'] not in unique_names:
+                    if dct.get('name') and dct['name'] not in unique_names:
                         res.append({k: v for k, v in dct.items()})
                         unique_names.add(dct['name'])
         except FileNotFoundError:
             LOGGER.error(f"File {file_name} doesn't exists")
     with open(output_file, 'w') as f:
-        json.dump(res, f)
+        json.dump(res, f, indent=4)
 
 
 parse_user('user3.json', 'user1.json', 'user2.json')
