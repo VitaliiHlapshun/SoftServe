@@ -9,7 +9,6 @@ class Cart:
         self.price = price
         self.count = count
 
-    @property
     def discount(self):
         if 2 <= self.count < 5:
             return self.price
@@ -25,27 +24,24 @@ class Cart:
             return self.price * 0.5
 
 class CartTest(unittest.TestCase):
-
     @classmethod
     def setUpClass(cls):
-        print('setupClass')
+        pass
 
     @classmethod
     def tearDownClass(cls):
-        print('teardownClass')
+        pass
 
     def setUp(self):
-        print('setUp')
         self.purchase_1 = Cart("banan", 30, 5)
         self.purchase_2 = Cart("lemon", 50, 7)
-
+    
     def tearDown(self):
-        print('tearDown\n')
+        pass
 
     def test_discount(self):
-        print('test_discount')
         self.assertEqual(self.purchase_1, 3.0)
         self.assertEqual(self.purchase_2, 10.0)
-
-if __name__ == '__main__':
-    unittest.main()
+        
+# if __name__ == '__main__':
+#     unittest.main()
